@@ -3,38 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ゆる選びラボ | 比較・レビューのブログ型アフィリエイトサイト雛形</title>
-  <meta name="description" content="日本語ブログ風の見た目で作った、比較・レビュー向け静的アフィリエイトサイトの雛形です。記事一覧、カテゴリ、サイドバー、ランキング導線を備えています。" />
+  <title>夜ふかしレビュー便 | 成人向け作品の比較とレビュー</title>
+  <meta name="description" content="FANZA・DLsite・MGSなどの動画・電子書籍・同人・音声作品を横断して、比較・レビュー・初心者向けガイドを整理する日本語ブログ風サイトです。" />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://example.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ゆる選びラボ | 比較・レビューのブログ型アフィリエイトサイト雛形" />
-  <meta property="og:description" content="日本語ブログ風の見た目で作った、比較・レビュー向け静的アフィリエイトサイトの雛形です。" />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:site_name" content="ゆる選びラボ" />
+  <meta property="og:title" content="夜ふかしレビュー便 | 成人向け作品の比較とレビュー" />
+  <meta property="og:description" content="FANZA・DLsite・MGSなど複数サービスの成人向け作品を横断して、比較・レビュー・選び方を整理したトップページ雛形。" />
+  <meta property="og:site_name" content="夜ふかしレビュー便" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebSite",
-    "name":"ゆる選びラボ",
-    "url":"https://example.com/",
-    "description":"比較・レビュー向けの日本語ブログ型アフィリエイトサイト雛形",
+    "name":"夜ふかしレビュー便",
+    "description":"FANZA・DLsite・MGSなど複数サービスの成人向け作品の比較とレビューを扱う日本語ブログ風サイト",
     "inLanguage":"ja-JP"
   }
   </script>
   <style>
     :root {
-      --bg:#f6f4ef;
+      --bg:#f7f4ef;
       --surface:#fffdfa;
-      --surface-2:#f0ece4;
-      --line:#e2ddd2;
-      --text:#2b2a26;
-      --muted:#6d6a63;
-      --accent:#936d2e;
-      --accent-2:#4f6f68;
+      --surface-2:#f1ece5;
+      --line:#e2dbd2;
+      --text:#26231f;
+      --muted:#6d675f;
+      --accent:#7b4a7f;
+      --accent-soft:#efe3f0;
       --link:#215f8c;
-      --radius:16px;
-      --shadow:0 12px 28px rgba(43,42,38,.08);
+      --good:#4b6b62;
+      --radius:18px;
+      --shadow:0 12px 28px rgba(38,35,31,.08);
       --content:1120px;
     }
     *{box-sizing:border-box}
@@ -50,28 +48,28 @@
     a:hover{text-decoration:underline}
     img{max-width:100%;display:block}
     .wrap{max-width:var(--content);margin:0 auto;padding:0 16px}
-    .topbar{background:#ebe4d6;color:#5d513b;font-size:13px;border-bottom:1px solid #ddd3bf}
+    .topbar{background:#efe8f1;color:#66416a;font-size:13px;border-bottom:1px solid #dfd2e1}
     .topbar .wrap{padding:8px 16px}
-    .site-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+    .site-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
     .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
     .brand{display:flex;align-items:center;gap:12px;color:var(--text)}
     .brand svg{width:42px;height:42px;color:var(--accent)}
     .brand-title{font-size:24px;font-weight:800;letter-spacing:.02em}
     .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
     nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0;font-size:14px;flex-wrap:wrap}
-    .hero{padding:34px 0 26px}
+    .hero{padding:34px 0 24px}
     .hero-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:24px}
     .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
     .hero-main{padding:30px}
-    .eyebrow{display:inline-block;background:#efe5cf;color:#6f5620;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
+    .eyebrow{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
     h1{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:14px 0 14px}
     .lead{color:var(--muted);font-size:16px;max-width:60ch}
     .hero-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-    .hero-points div{background:var(--surface-2);border-radius:14px;padding:12px 14px;font-size:13px;color:#534d43}
+    .hero-points div{background:var(--surface-2);border-radius:14px;padding:12px 14px;font-size:13px;color:#514b43}
     .hero-side{padding:22px}
     .hero-side h2,.section-title,.sidebar-title,.article h2{font-size:20px;line-height:1.4;margin:0 0 14px}
     .mini-list{display:grid;gap:12px}
-    .mini-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fffcf7}
+    .mini-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fffcff}
     .mini-card .cat,.article-meta,.rank-badge,.small{font-size:12px;color:var(--muted)}
     .mini-card a{display:block;color:var(--text);font-weight:700;line-height:1.5;margin-top:4px}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;padding:12px 0 42px}
@@ -79,22 +77,22 @@
     .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
     .cards{display:grid;gap:16px}
     .post-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
-    .thumb{aspect-ratio:16/8;background:linear-gradient(135deg,#e7dfd0,#f7f1e8 55%,#d9e5e1);position:relative}
-    .thumb::after{content:"記事サムネ";position:absolute;right:14px;bottom:10px;font-size:12px;color:#736c62;background:rgba(255,255,255,.68);padding:5px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
+    .thumb{aspect-ratio:16/8;background:linear-gradient(135deg,#efe3f0,#f7f1f7 52%,#dddfe7);position:relative}
+    .thumb::after{content:"レビュー記事";position:absolute;right:14px;bottom:10px;font-size:12px;color:#6e6370;background:rgba(255,255,255,.72);padding:5px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
     .post-body{padding:18px 18px 20px}
     .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-    .tag{font-size:12px;border-radius:999px;padding:5px 10px;background:#f2ede5;color:#6a624f}
+    .tag{font-size:12px;border-radius:999px;padding:5px 10px;background:#f2ebf5;color:#715778}
     .post-title{font-size:24px;line-height:1.45;margin:0 0 10px}
     .post-excerpt{font-size:15px;color:var(--muted);margin:0 0 14px}
     .article-meta{display:flex;gap:12px;flex-wrap:wrap}
     .sidebar .box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
     .ranking{list-style:none;padding:0;margin:0;display:grid;gap:12px}
     .ranking li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start}
-    .rank-badge{width:28px;height:28px;border-radius:50%;background:#efe5cf;color:#7c5c18;display:grid;place-items:center;font-weight:800}
+    .rank-badge{width:28px;height:28px;border-radius:50%;background:#efe3f0;color:#7b4a7f;display:grid;place-items:center;font-weight:800}
     .profile{display:grid;gap:12px}
-    .profile .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#d8c59b,#b18c42);display:grid;place-items:center;color:#fff;font-weight:800}
-    .cat-list,.footer-links{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-    .newsletter{background:linear-gradient(135deg,#fffaf0,#f1efe8);border:1px solid #e7dbc1;padding:18px;border-radius:18px}
+    .profile .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#b47ab9,#6a4370);display:grid;place-items:center;color:#fff;font-weight:800}
+    .cat-list,.footer-links,.check-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .cta{background:linear-gradient(135deg,#fff8ff,#f3ebf5);border:1px solid #eadced;padding:18px;border-radius:18px}
     .btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 16px;border-radius:999px;font-weight:700}
     .btn:hover{text-decoration:none;filter:brightness(.96)}
     .notice{font-size:12px;color:var(--muted);margin-top:12px}
@@ -102,10 +100,15 @@
     .article h2{margin-top:0}
     .article h3{font-size:18px;margin:24px 0 10px}
     .article ul{padding-left:20px}
-    .article blockquote{margin:18px 0;padding:14px 16px;border-left:4px solid #dbc28f;background:#fbf7ef;border-radius:12px}
+    .article blockquote{margin:18px 0;padding:14px 16px;border-left:4px solid #cfa8d3;background:#fbf5fc;border-radius:12px}
+    .note-box{background:#f7f1f8;border:1px solid #e6dbe8;border-radius:14px;padding:14px 16px}
+    table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}
+    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;font-size:14px;vertical-align:top}
+    th{background:#f6f1f8}
     footer{padding:34px 0 60px;color:var(--muted)}
     .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
     .muted{color:var(--muted)}
+    .ok{color:var(--good);font-weight:700}
     @media (max-width: 980px){
       .hero-grid,.layout,.footer-grid{grid-template-columns:1fr}
       .hero-points{grid-template-columns:1fr}
@@ -121,29 +124,29 @@
 </head>
 <body>
   <div class="topbar">
-    <div class="wrap">PRを含みます / 比較・レビュー・選び方を日本語ブログ風に整理したアフィリエイトサイト雛形</div>
+    <div class="wrap">このサイトにはPRを含みます / 18歳未満の方は利用できません / 記事内リンクにはアフィリエイトリンクを含む場合があります</div>
   </div>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="ゆる選びラボ ホーム">
+      <a class="brand" href="#top" aria-label="夜ふかしレビュー便 ホーム">
         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ロゴ">
           <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="4"/>
-          <path d="M20 33c4-7 8-10 12-10s8 3 12 10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-          <path d="M25 39h14" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M20 34c4-8 8-11 12-11s8 3 12 11" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M24 40h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
         </svg>
         <div>
-          <div class="brand-title">ゆる選びラボ</div>
-          <div class="brand-sub">比較・レビュー・まとめ記事で回遊させるブログ型メディア</div>
+          <div class="brand-title">夜ふかしレビュー便</div>
+          <div class="brand-sub">成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</div>
         </div>
       </a>
       <nav aria-label="グローバルナビ">
         <ul>
           <li><a href="#new">新着記事</a></li>
           <li><a href="#popular">人気記事</a></li>
-          <li><a href="#guide">初心者向け</a></li>
+          <li><a href="#guide">選び方</a></li>
           <li><a href="#review">レビュー</a></li>
-          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="#policy">案内</a></li>
         </ul>
       </nav>
     </div>
@@ -153,29 +156,29 @@
     <section class="hero wrap">
       <div class="hero-grid">
         <div class="panel hero-main">
-          <span class="eyebrow">ブログ風トップページ見本</span>
-          <h1>「普通の日本語ブログ」に見える形で、<br>比較・レビュー系のアフィリエイト導線を作る。</h1>
-          <p class="lead">この雛形は、いかにも開発者の仮置きに見えるページではなく、記事一覧・サイドバー・ランキング・まとめ記事を備えた日本語ブログ風の見た目で作っています。GitHub Pages や Cloudflare Pages に置いても、見た目そのものは普通の情報サイトとして公開できます。</p>
+          <span class="eyebrow">成人向けレビュー向けトップページ雛形</span>
+          <h1>作品選びで迷う人向けに、<br>比較・レビュー・初心者導線を1か所にまとめる。</h1>
+          <p class="lead">このトップページは、成人向けアフィリエイトサイトを日本語ブログ風に見せるための実運用向け雛形です。FANZA・DLsite・MGSなど複数サービスをまたいで扱えるよう、看板は中立寄りにしています。レビュー記事、比較記事、ランキング、カテゴリ導線、PR表記、運営情報の入口をまとめて、まず回遊しやすい形にしています。</p>
           <div class="hero-points">
-            <div>カテゴリ一覧が見える</div>
-            <div>新着記事と人気記事が分かれる</div>
-            <div>サイドバーで回遊導線を作れる</div>
+            <div>初心者向けの選び方を先に置ける</div>
+            <div>ランキングや新着で回遊導線を作れる</div>
+            <div>あとから各記事へリンクを差し替えやすい</div>
           </div>
         </div>
-        <aside class="panel hero-side" aria-label="注目情報">
-          <h2>この雛形で分かること</h2>
+        <aside class="panel hero-side" aria-label="注目導線">
+          <h2>最初に差し替える場所</h2>
           <div class="mini-list">
             <div class="mini-card">
-              <div class="cat">見た目</div>
-              <a href="#new">いわゆる“普通のブログ風”にどこまで寄せられるか</a>
+              <div class="cat">1. リンク先</div>
+              <a href="#guide">各ボタンや記事リンクの <code>#</code> を実際のURLへ変える</a>
             </div>
             <div class="mini-card">
-              <div class="cat">導線</div>
-              <a href="#popular">記事一覧・ランキング・関連記事の配置</a>
+              <div class="cat">2. 記事テーマ</div>
+              <a href="#review">レビュー対象のジャンルやシリーズ名に差し替える</a>
             </div>
             <div class="mini-card">
-              <div class="cat">運用</div>
-              <a href="#guide">無料ホスティングでも更新しやすいページ構成</a>
+              <div class="cat">3. 固定ページ</div>
+              <a href="#policy">運営者情報、プライバシーポリシー、問い合わせ導線を作る</a>
             </div>
           </div>
         </aside>
@@ -197,9 +200,9 @@
                   <span class="tag">比較</span>
                   <span class="tag">初心者向け</span>
                 </div>
-                <h3 class="post-title"><a href="#review">はじめてでも迷いにくい比較記事の作り方と導線の置き方</a></h3>
-                <p class="post-excerpt">単にリンクを貼るだけではなく、どういう人に向いているか、何で迷いやすいか、どこを比べるべきかまで整理した見本ページです。</p>
-                <div class="article-meta"><span>2026.05.11</span><span>更新 7分</span><span>監修: ゆる選びラボ編集部</span></div>
+                <h3 class="post-title"><a href="#review">初心者が迷いにくい作品の選び方と、比較記事で見るべきポイント</a></h3>
+                <p class="post-excerpt">いきなり作品リンクを押すのではなく、まず「どんな人に向くか」「何を基準に選ぶか」を整理してから候補を見せるための記事見本です。</p>
+                <div class="article-meta"><span>2026.05.11</span><span>更新 6分</span><span>カテゴリ: 選び方</span></div>
               </div>
             </article>
 
@@ -207,12 +210,12 @@
               <div class="thumb" aria-hidden="true"></div>
               <div class="post-body">
                 <div class="tags">
+                  <span class="tag">レビュー</span>
                   <span class="tag">まとめ</span>
-                  <span class="tag">選び方</span>
                 </div>
-                <h3 class="post-title"><a href="#guide">失敗しにくい選び方を1ページで整理する“まとめ記事”の型</a></h3>
-                <p class="post-excerpt">検索流入を取りやすいまとめ記事は、対象読者を狭くして、悩みごとの順番で章立てすると読みやすくなります。</p>
-                <div class="article-meta"><span>2026.05.10</span><span>更新 5分</span><span>カテゴリ: ガイド</span></div>
+                <h3 class="post-title"><a href="#review">レビュー記事で先に確認したい、向いている人・注意点・類似作品</a></h3>
+                <p class="post-excerpt">成人向けジャンルは好みの幅が大きいので、結論だけでなく、相性や注意点を先に置く構成にしています。</p>
+                <div class="article-meta"><span>2026.05.10</span><span>更新 5分</span><span>カテゴリ: レビュー</span></div>
               </div>
             </article>
           </div>
@@ -220,45 +223,63 @@
 
         <section class="section" id="guide">
           <article class="article">
-            <h2>初心者向けの作り方ガイド</h2>
-            <p>日本語のアフィリエイトサイトで大事なのは、派手さよりも「見慣れた情報サイト感」です。ヘッダー、パンくず、カテゴリ、記事一覧、サイドバー、プロフィール、人気記事、関連記事がきちんと配置されていれば、静的サイトでも違和感はかなり減ります。</p>
-            <h3>最初に必要なページ</h3>
+            <h2>このサイトの使い方</h2>
+            <p>トップでは、まず初心者向けの入口、次に人気記事、最後にレビューや比較記事へ流す構成にしています。成人向けジャンルは人によって好みがかなり分かれるので、いきなりランキングだけを見せるより、選び方の整理を先に置くと読みやすくなります。</p>
+            <div class="note-box">
+              <strong>最初にやること:</strong> サイト名、記事タイトル、リンク先URL、運営者情報、プライバシーポリシーの5つを自分用に差し替えれば、公開用の最低ラインに近づきます。
+            </div>
+            <h3>最初に作るページ</h3>
             <ul>
               <li>トップページ: 新着記事、人気記事、カテゴリ導線をまとめる。</li>
-              <li>カテゴリページ: 同じ悩みを持つ人向けの記事を集める。</li>
-              <li>比較記事: 迷っている人向けに候補の違いを整理する。</li>
-              <li>レビュー記事: 個別の特徴、向いている人、注意点を書く。</li>
-              <li>運営者情報・問い合わせ: 最低限の信頼補強に使う。</li>
+              <li>比較記事: ジャンル別、シリーズ別、初心者向けの候補比較を置く。</li>
+              <li>レビュー記事: 個別作品やシリーズの特徴、向いている人、注意点を書く。</li>
+              <li>固定ページ: 運営者情報、プライバシーポリシー、問い合わせ先を置く。</li>
             </ul>
-            <blockquote>この雛形では、まず「普通に見えること」を優先して、ブログっぽい箱と導線を整えています。あとから記事を増やすほど、見た目も中身もサイトらしくなります。</blockquote>
-            <h3>更新の考え方</h3>
-            <p>更新は、毎回デザインを触るのではなく、記事カードを増やし、人気順や関連記事を差し替えるだけに寄せるとラクです。つまり、最初に“更新しやすい棚”を作るのが勝ち筋です。</p>
+            <h3>おすすめの章立て</h3>
+            <table>
+              <thead>
+                <tr><th>記事タイプ</th><th>おすすめ構成</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>比較記事</td><td>結論 → 比較ポイント → 向いている人 → 注意点 → FAQ</td></tr>
+                <tr><td>レビュー記事</td><td>結論 → 作品の特徴 → 類似作品との違い → 向いている人 → 注意点</td></tr>
+                <tr><td>まとめ記事</td><td>結論 → ジャンル説明 → おすすめ候補 → 選び方 → 関連記事</td></tr>
+              </tbody>
+            </table>
+            <blockquote>この雛形は、いきなり完成版を目指すためではなく、「見た目を整えたうえで記事を増やしやすい棚」を作るためのものです。</blockquote>
           </article>
         </section>
 
         <section class="section" id="review">
           <article class="article">
-            <h2>レビュー記事の見本</h2>
-            <p class="small">※ 以下は構成の見本です。実運用ではテーマに合わせて差し替えます。</p>
+            <h2>レビュー記事の見本構成</h2>
+            <p class="small">※ 下の文面は構成サンプルです。実際の作品名、シリーズ名、アフィリエイトリンクに差し替えて使います。</p>
             <h3>この記事で分かること</h3>
             <ul>
               <li>どんな人に向いているか。</li>
-              <li>他の候補と比べて何が違うか。</li>
-              <li>申し込み前に見ておきたい注意点。</li>
+              <li>どのジャンルや雰囲気が近いか。</li>
+              <li>先に知っておきたい注意点は何か。</li>
             </ul>
             <h3>結論</h3>
-            <p>結論を先に書き、その後で理由を分解する形にすると、日本語ブログの読み味に近づきます。いきなりリンクを押させるより、悩み・比較・結論・注意点・FAQ の順で並べるほうが自然です。</p>
+            <p>先に結論を書くと、読者が自分向きかどうかを短時間で判断しやすくなります。そのあとで、理由、特徴、比較、関連リンクの順に置くと、日本語ブログっぽい読み味になります。</p>
             <h3>向いている人</h3>
             <ul>
-              <li>まず全体像を知りたい人。</li>
-              <li>比較表を見て候補を絞りたい人。</li>
-              <li>レビューと注意点を読んでから判断したい人。</li>
+              <li>まず全体像を短く知りたい人。</li>
+              <li>類似作品との違いを見てから決めたい人。</li>
+              <li>レビューと注意点の両方を確認したい人。</li>
             </ul>
-            <h3 id="faq">よくある質問</h3>
-            <p><strong>Q.</strong> 無料ホスティングでも普通のブログっぽく見せられる？<br>
-            <strong>A.</strong> 見せられます。重要なのはホスティング先より、レイアウト、記事量、内部リンク、見せ方です。</p>
-            <p><strong>Q.</strong> いきなり人は来る？<br>
-            <strong>A.</strong> いきなりは来ません。狭いテーマの記事群を積み上げて、検索と回遊を増やす前提です。</p>
+            <h3>差し替えチェック</h3>
+            <ul class="check-list">
+              <li><span class="ok">OK</span> タイトルを実際のジャンル・作品名に変える。</li>
+              <li><span class="ok">OK</span> 記事内リンクの <code>#</code> を本物のURLにする。</li>
+              <li><span class="ok">OK</span> おすすめボタンをFANZA・DLsite・MGSなど実際に使うASPのリンクへ差し替える。</li>
+              <li><span class="ok">OK</span> FAQに年齢制限や注意事項を入れる。</li>
+            </ul>
+            <h3>よくある質問</h3>
+            <p><strong>Q.</strong> このまま公開していい？<br>
+            <strong>A.</strong> 見た目確認には使えますが、実運用ではリンク先、運営情報、ポリシー類は差し替えたほうがいいです。</p>
+            <p><strong>Q.</strong> 最初から記事をたくさん作るべき？<br>
+            <strong>A.</strong> まずはトップ1本、比較2本、レビュー3本くらいの小さな形から始めるほうが続けやすいです。</p>
           </article>
         </section>
       </div>
@@ -267,21 +288,21 @@
         <section class="box" id="popular">
           <h2 class="sidebar-title">人気記事ランキング</h2>
           <ol class="ranking">
-            <li><span class="rank-badge">1</span><a href="#review">レビュー記事で最初に置くべき5つの要素</a></li>
-            <li><span class="rank-badge">2</span><a href="#guide">日本語ブログっぽく見えるトップページの作り方</a></li>
-            <li><span class="rank-badge">3</span><a href="#new">比較記事で離脱を減らす見出し順</a></li>
-            <li><span class="rank-badge">4</span><a href="#faq">FAQを入れるべき理由</a></li>
-            <li><span class="rank-badge">5</span><a href="#">関連記事リンクの置き方</a></li>
+            <li><span class="rank-badge">1</span><a href="#review">初心者向けの比較記事で最初に見るべきポイント</a></li>
+            <li><span class="rank-badge">2</span><a href="#guide">日本語ブログっぽく見えるトップ構成の作り方</a></li>
+            <li><span class="rank-badge">3</span><a href="#review">レビュー記事で先に結論を書く理由</a></li>
+            <li><span class="rank-badge">4</span><a href="#policy">PR表記と固定ページの整え方</a></li>
+            <li><span class="rank-badge">5</span><a href="#">関連記事導線の置き方</a></li>
           </ol>
         </section>
 
         <section class="box">
           <h2 class="sidebar-title">カテゴリ</h2>
           <ul class="cat-list">
-            <li><a href="#">比較・ランキング</a></li>
-            <li><a href="#">初心者ガイド</a></li>
-            <li><a href="#">レビュー</a></li>
-            <li><a href="#">選び方</a></li>
+            <li><a href="#">初心者向けガイド</a></li>
+            <li><a href="#">FANZA比較・ランキング</a></li>
+            <li><a href="#">DLsiteレビュー・音声作品</a></li>
+            <li><a href="#">MGS特集</a></li>
             <li><a href="#">よくある質問</a></li>
           </ul>
         </section>
@@ -291,40 +312,40 @@
           <div class="profile">
             <div class="avatar">編</div>
             <div>
-              <strong>ゆる選びラボ編集部</strong>
-              <p class="muted">比較記事、まとめ記事、レビュー記事を中心に、迷っている人のための選び方を整理する想定のプロフィール枠です。</p>
+              <strong>夜ふかしレビュー便 編集部</strong>
+              <p class="muted">成人向け作品の比較やレビューを、初心者でも見やすい形で整理する想定のプロフィール枠です。実運用では、ここを自分の運営者情報に差し替えます。</p>
             </div>
           </div>
         </section>
 
-        <section class="newsletter">
+        <section class="cta">
           <h2 class="sidebar-title">おすすめ導線ボックス</h2>
-          <p class="muted">ここはランキング訴求、無料まとめ配布、人気カテゴリ誘導などに使えます。</p>
+          <p class="muted">ここは「人気作品を見る」「初心者向けまとめへ進む」「FANZA比較へ進む」「DLsite音声まとめを見る」など、最も押してほしいボタンを置く場所です。</p>
           <a class="btn" href="#review">おすすめ記事を見る</a>
-          <div class="notice">※ 実運用ではアフィリエイト導線や特集ページへのリンクに差し替えます。</div>
+          <div class="notice">※ 実運用ではこのボタンのリンク先をアフィリエイト導線か特集ページへ差し替えます。</div>
         </section>
       </aside>
     </div>
   </main>
 
-  <footer>
+  <footer id="policy">
     <div class="wrap footer-grid">
       <section>
-        <h2 class="sidebar-title">この雛形について</h2>
-        <p class="muted">無料ホスティング上でも、見せ方を整えれば日本語ブログ風の見た目に寄せられることを確認するための試作です。ここからカテゴリ追加、記事追加、内部リンク追加でメディア化していく想定です。</p>
+        <h2 class="sidebar-title">このサイトについて</h2>
+        <p class="muted">このページは、FANZA・DLsite・MGSなど複数サービスをまたぐ成人向けアフィリエイトサイトを、日本語ブログ風の見た目で運用するための雛形です。公開前には、年齢制限の案内、PR表記、運営者情報、プライバシーポリシー、問い合わせ先を整える想定です。</p>
       </section>
       <section>
-        <h2 class="sidebar-title">固定ページ</h2>
+        <h2 class="sidebar-title">固定ページ候補</h2>
         <ul class="footer-links">
           <li><a href="#">運営者情報</a></li>
           <li><a href="#">プライバシーポリシー</a></li>
           <li><a href="#">お問い合わせ</a></li>
-          <li><a href="#">サイトマップ</a></li>
+          <li><a href="#">免責事項</a></li>
         </ul>
       </section>
       <section>
-        <h2 class="sidebar-title">メモ</h2>
-        <p class="muted">このまま1ファイルで動きます。実運用では記事ページを増やし、内部リンクを差し替え、独自ドメインで公開するだけでOKです。</p>
+        <h2 class="sidebar-title">更新メモ</h2>
+        <p class="muted">このまま1ファイルで動きます。差し替えの中心は、サイト名、見出し、リンク先、固定ページ導線です。記事を増やす時は同じデザインのまま複製して広げられます。</p>
       </section>
     </div>
   </footer>
