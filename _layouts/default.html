@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  {% include head.html %}
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+</head>
+<body>
+  {% include header.html %}
+
+  <main{% if page.main_id %} id="{{ page.main_id }}"{% endif %}>
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
