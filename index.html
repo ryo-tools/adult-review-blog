@@ -1,556 +1,139 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>夜ふかしレビュー便 | 成人向け作品の比較とレビュー</title>
-  <meta name="description" content="FANZA・DLsite・MGSなどの動画・電子書籍・同人・音声作品を横断して、比較・レビュー・初心者向けガイドを整理する日本語ブログ風サイトです。" />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="夜ふかしレビュー便 | 成人向け作品の比較とレビュー" />
-  <meta property="og:description" content="FANZA・DLsite・MGSなど複数サービスの成人向け作品を横断して、比較・レビュー・選び方を整理したトップページ雛形。" />
-  <meta property="og:site_name" content="夜ふかしレビュー便" />
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"夜ふかしレビュー便",
-    "description":"FANZA・DLsite・MGSなど複数サービスの成人向け作品の比較とレビューを扱う日本語ブログ風サイト",
-    "inLanguage":"ja-JP"
-  }
-  </script>
-  <style>
-    :root {
-      --bg:#f7f4ef;
-      --surface:#fffdfa;
-      --surface-2:#f1ece5;
-      --line:#e2dbd2;
-      --text:#26231f;
-      --muted:#6d675f;
-      --accent:#7b4a7f;
-      --accent-soft:#efe3f0;
-      --link:#215f8c;
-      --good:#4b6b62;
-      --radius:18px;
-      --shadow:0 12px 28px rgba(38,35,31,.08);
-      --content:1120px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--text);
-      background:var(--bg);
-      font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
-      line-height:1.8;
-    }
-    a{color:var(--link);text-decoration:none}
-    a:hover{text-decoration:underline}
-    img{max-width:100%;display:block}
-    .wrap{max-width:var(--content);margin:0 auto;padding:0 16px}
-    .topbar{background:#efe8f1;color:#66416a;font-size:13px;border-bottom:1px solid #dfd2e1}
-    .topbar .wrap{padding:8px 16px}
-    .site-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
-    .brand{display:flex;align-items:center;gap:12px;color:var(--text)}
-    .brand svg{width:42px;height:42px;color:var(--accent)}
-    .brand-title{font-size:24px;font-weight:800;letter-spacing:.02em}
-    .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
-    nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0;font-size:14px;flex-wrap:wrap}
-    .hero{padding:34px 0 24px}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:start}
-    .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero-main{padding:30px}
-    .eyebrow{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.04em}
-    h1{font-size:clamp(28px,4vw,42px);line-height:1.25;margin:14px 0 14px}
-    .lead{color:var(--muted);font-size:16px;max-width:60ch}
-    .hero-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-    .hero-points div{background:var(--surface-2);border-radius:14px;padding:12px 14px;font-size:13px;color:#514b43}
-    .hero-side{padding:22px}
-    .hero-side h2,.section-title,.sidebar-title,.article h2{font-size:20px;line-height:1.4;margin:0 0 14px}
-    .mini-list{display:grid;gap:12px}
-    .mini-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fffcff}
-    .mini-card .cat,.article-meta,.rank-badge,.small{font-size:12px;color:var(--muted)}
-    .mini-card a{display:block;color:var(--text);font-weight:700;line-height:1.5;margin-top:4px}
-    .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;padding:12px 0 42px;align-items:start}
-    .section{margin-bottom:28px}
-    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
-    .cards{display:grid;gap:16px}
-    .post-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
-    .thumb{aspect-ratio:16/8;background:linear-gradient(135deg,#efe3f0,#f7f1f7 52%,#dddfe7);position:relative}
-    .thumb::after{content:"レビュー記事";position:absolute;right:14px;bottom:10px;font-size:12px;color:#6e6370;background:rgba(255,255,255,.72);padding:5px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
-    .post-body{padding:18px 18px 20px}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-    .tag{font-size:12px;border-radius:999px;padding:5px 10px;background:#f2ebf5;color:#715778}
-    .post-title{font-size:24px;line-height:1.45;margin:0 0 10px}
-    .post-excerpt{font-size:15px;color:var(--muted);margin:0 0 14px}
-    .article-meta{display:flex;gap:12px;flex-wrap:wrap}
-    .sidebar .box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
-    .ranking{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-    .ranking li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start}
-    .rank-badge{width:28px;height:28px;border-radius:50%;background:#efe3f0;color:#7b4a7f;display:grid;place-items:center;font-weight:800}
-    .profile{display:grid;gap:12px}
-    .profile .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#b47ab9,#6a4370);display:grid;place-items:center;color:#fff;font-weight:800}
-    .cat-list,.footer-links,.check-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-    .cta{background:linear-gradient(135deg,#fff8ff,#f3ebf5);border:1px solid #eadced;padding:18px;border-radius:18px}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 16px;border-radius:999px;font-weight:700}
-    .btn:hover{text-decoration:none;filter:brightness(.96)}
-    .notice{font-size:12px;color:var(--muted);margin-top:12px}
-    .article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
-    .article h2{margin-top:0}
-    .article h3{font-size:18px;margin:24px 0 10px}
-    .article ul{padding-left:20px}
-    .article blockquote{margin:18px 0;padding:14px 16px;border-left:4px solid #cfa8d3;background:#fbf5fc;border-radius:12px}
-    .note-box{background:#f7f1f8;border:1px solid #e6dbe8;border-radius:14px;padding:14px 16px}
-    table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}
-    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;font-size:14px;vertical-align:top}
-    th{background:#f6f1f8}
-    footer{padding:34px 0 60px;color:var(--muted)}
-    .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
-    .muted{color:var(--muted)}
-    .ok{color:var(--good);font-weight:700}
-    .note-box a{overflow-wrap:anywhere;word-break:break-word}
-    .hero-grid > *,.layout > *,.footer-grid > *{min-width:0}
-    @media (max-width: 980px){
-      .hero-grid,.layout,.footer-grid{grid-template-columns:1fr}
-      .hero-points{grid-template-columns:1fr}
-      .header-inner{align-items:flex-start;flex-direction:column}
-    }
-    @media (max-width: 640px){
-      .brand-title{font-size:21px}
-      .post-title{font-size:21px}
-      .hero-main,.hero-side,.article{padding:18px}
-      nav ul{gap:12px}
-    }
-    @media (max-width: 768px){
-  .wrap{
-    padding:0 14px;
-  }
+<main class="container">
+  <div class="content-grid">
+    <section class="main-content">
+      <section class="hero">
+        <h1>DLsite作品レビューまとめ</h1>
+        <p>音声作品・ASMR・同人作品を中心に、初心者にも分かりやすく紹介しています。</p>
+      </section>
 
-  .site-header{
-    position:static;
-  }
-
-  .header-inner{
-    padding:14px 0 12px;
-    gap:10px;
-  }
-
-  .brand{
-    align-items:flex-start;
-  }
-
-  .brand svg{
-    width:34px;
-    height:34px;
-  }
-
-  .brand-title{
-    font-size:20px;
-    line-height:1.25;
-  }
-
-  .brand-sub{
-    font-size:11px;
-    line-height:1.5;
-  }
-
-  nav{
-    width:100%;
-  }
-
-  nav ul{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:8px;
-    width:100%;
-  }
-
-  nav a{
-    display:block;
-    padding:10px 12px;
-    background:var(--surface-2);
-    border-radius:12px;
-    text-align:center;
-    font-size:13px;
-  }
-
-  .topbar .wrap{
-    padding:8px 14px;
-    font-size:12px;
-    line-height:1.6;
-  }
-
-  .hero{
-    padding:18px 0 14px;
-  }
-
-  .hero-grid{
-    gap:14px;
-  }
-
-  .hero-main,
-  .hero-side,
-  .article,
-  .sidebar .box,
-  .cta{
-    padding:16px;
-    border-radius:16px;
-  }
-
-  h1{
-    font-size:26px;
-    line-height:1.35;
-    margin:12px 0;
-  }
-
-  .lead{
-    font-size:14px;
-    line-height:1.8;
-  }
-
-  .section{
-    margin-bottom:18px;
-  }
-
-  .section-head{
-    align-items:center;
-    margin-bottom:10px;
-  }
-
-  .section-title,
-  .hero-side h2,
-  .sidebar-title,
-  .article h2{
-    font-size:18px;
-    line-height:1.4;
-  }
-
-  .post-title{
-    font-size:20px;
-    line-height:1.5;
-  }
-
-  .post-excerpt{
-    font-size:14px;
-    line-height:1.8;
-  }
-
-  .post-body{
-    padding:16px;
-  }
-
-  .layout{
-    gap:18px;
-    padding:8px 0 28px;
-  }
-
-  table{
-    display:block;
-    overflow-x:auto;
-    white-space:nowrap;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  th,td{
-    min-width:140px;
-    font-size:13px;
-  }
-
-  .footer-grid{
-    padding:16px;
-    gap:14px;
-  }
-
-  .btn{
-    display:block;
-    text-align:center;
-    width:100%;
-    padding:12px 16px;
-  }
-}
-
-  </style>
-</head>
-<body>
-  <div class="topbar">
-    <div class="wrap">このサイトにはPRを含みます / 18歳未満の方は利用できません / 記事内リンクにはアフィリエイトリンクを含む場合があります</div>
-  </div>
-
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="夜ふかしレビュー便 ホーム">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ロゴ">
-          <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="4"/>
-          <path d="M20 34c4-8 8-11 12-11s8 3 12 11" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-          <path d="M24 40h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <div>
-          <div class="brand-title">夜ふかしレビュー便</div>
-          <div class="brand-sub">成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</div>
+      <section class="section-block">
+        <div class="section-head">
+          <h2>最新記事</h2>
+          <a href="/archive.html" class="more-link">一覧を見る</a>
         </div>
-      </a>
-      <nav aria-label="グローバルナビ">
-        <ul>
-          <li><a href="#new">新着記事</a></li>
-          <li><a href="#popular">人気記事</a></li>
-          <li><a href="#guide">選び方</a></li>
-          <li><a href="#review">レビュー</a></li>
-          <li><a href="#policy">案内</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <main id="top">
-    <section class="hero wrap">
-      <div class="hero-grid">
-        <div class="panel hero-main">
-          <span class="eyebrow">成人向けレビュー向けトップページ雛形</span>
-          <h1>作品選びで迷う人向けに、<br>比較・レビュー・初心者導線を1か所にまとめる。</h1>
-          <p class="lead">このトップページは、成人向けアフィリエイトサイトを日本語ブログ風に見せるための実運用向け雛形です。FANZA・DLsite・MGSなど複数サービスをまたいで扱えるよう、看板は中立寄りにしています。レビュー記事、比較記事、ランキング、カテゴリ導線、PR表記、運営情報の入口をまとめて、まず回遊しやすい形にしています。</p>
-          <div class="hero-points">
-            <div>初心者向けの選び方を先に置ける</div>
-            <div>ランキングや新着で回遊導線を作れる</div>
-            <div>あとから各記事へリンクを差し替えやすい</div>
-          </div>
+        <div class="card-list">
+          {% for post in site.posts limit: 8 %}
+          <article class="post-card">
+            <a href="{{ post.url | relative_url }}" class="post-card-link">
+              {% if post.image %}
+              <div class="post-card-thumb">
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+              </div>
+              {% endif %}
+
+              <div class="post-card-body">
+                {% if post.categories and post.categories.size > 0 %}
+                <div class="post-meta-row">
+                  <span class="post-category">{{ post.categories[0] }}</span>
+                  <time datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date: "%Y.%m.%d" }}
+                  </time>
+                </div>
+                {% else %}
+                <div class="post-meta-row">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date: "%Y.%m.%d" }}
+                  </time>
+                </div>
+                {% endif %}
+
+                <h3>{{ post.title }}</h3>
+
+                {% if post.description %}
+                <p>{{ post.description }}</p>
+                {% elsif post.excerpt %}
+                <p>{{ post.excerpt | strip_html | truncate: 110 }}</p>
+                {% endif %}
+
+                {% if post.tags and post.tags.size > 0 %}
+                <div class="tag-list">
+                  {% for tag in post.tags limit: 3 %}
+                  <span class="tag">#{{ tag }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+            </a>
+          </article>
+          {% endfor %}
         </div>
-        <aside class="panel hero-side" aria-label="注目導線">
-          <h2>最初に差し替える場所</h2>
-          <div class="mini-list">
-            <div class="mini-card">
-              <div class="cat">1. リンク先</div>
-              <a href="#guide">各ボタンや記事リンクの <code>#</code> を実際のURLへ変える</a>
-            </div>
-            <div class="mini-card">
-              <div class="cat">2. 記事テーマ</div>
-              <a href="#review">レビュー対象のジャンルやシリーズ名に差し替える</a>
-            </div>
-            <div class="mini-card">
-              <div class="cat">3. 固定ページ</div>
-              <a href="#policy">運営者情報、プライバシーポリシー、問い合わせ導線を作る</a>
-            </div>
-          </div>
-        </aside>
-      </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-head">
+          <h2>おすすめ記事</h2>
+        </div>
+
+        <div class="card-list featured-list">
+          {% assign featured_posts = site.posts | where: "featured", true %}
+          {% for post in featured_posts limit: 4 %}
+          <article class="post-card featured-card">
+            <a href="{{ post.url | relative_url }}" class="post-card-link">
+              {% if post.image %}
+              <div class="post-card-thumb">
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+              </div>
+              {% endif %}
+
+              <div class="post-card-body">
+                <span class="featured-badge">おすすめ</span>
+                <h3>{{ post.title }}</h3>
+
+                {% if post.description %}
+                <p>{{ post.description }}</p>
+                {% elsif post.excerpt %}
+                <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+                {% endif %}
+              </div>
+            </a>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
     </section>
 
-    <div class="wrap layout">
-      <div>
-        <section class="section" id="new">
-          <div class="section-head">
-            <h2 class="section-title">新着記事</h2>
-            <a href="#">一覧を見る</a>
-          </div>
-          <div class="cards">
-            <article class="post-card">
-              <div class="thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <div class="tags">
-                  <span class="tag">比較</span>
-                  <span class="tag">初心者向け</span>
-                </div>
-                <h3 class="post-title"><a href="#review">初心者が迷いにくい作品の選び方と、比較記事で見るべきポイント</a></h3>
-                <p class="post-excerpt">いきなり作品リンクを押すのではなく、まず「どんな人に向くか」「何を基準に選ぶか」を整理してから候補を見せるための記事見本です。</p>
-                <div class="article-meta"><span>2026.05.11</span><span>更新 6分</span><span>カテゴリ: 選び方</span></div>
-              </div>
-            </article>
-
-            <article class="post-card">
-              <div class="thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <div class="tags">
-                  <span class="tag">レビュー</span>
-                  <span class="tag">まとめ</span>
-                </div>
-                <h3 class="post-title"><a href="#review">レビュー記事で先に確認したい、向いている人・注意点・類似作品</a></h3>
-                <p class="post-excerpt">成人向けジャンルは好みの幅が大きいので、結論だけでなく、相性や注意点を先に置く構成にしています。</p>
-                <div class="article-meta"><span>2026.05.10</span><span>更新 5分</span><span>カテゴリ: レビュー</span></div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="guide">
-          <article class="article">
-            <h2>このサイトの使い方</h2>
-            <p>トップでは、まず初心者向けの入口、次に人気記事、最後にレビューや比較記事へ流す構成にしています。成人向けジャンルは人によって好みがかなり分かれるので、いきなりランキングだけを見せるより、選び方の整理を先に置くと読みやすくなります。</p>
-            <div class="note-box">
-              <strong>最初にやること:</strong> サイト名、記事タイトル、リンク先URL、運営者情報、プライバシーポリシーの5つを自分用に差し替えれば、公開用の最低ラインに近づきます。
-            </div>
-            <h3>最初に作るページ</h3>
-            <ul>
-              <li>トップページ: 新着記事、人気記事、カテゴリ導線をまとめる。</li>
-              <li>比較記事: ジャンル別、シリーズ別、初心者向けの候補比較を置く。</li>
-              <li>レビュー記事: 個別作品やシリーズの特徴、向いている人、注意点を書く。</li>
-              <li>固定ページ: 運営者情報、プライバシーポリシー、問い合わせ先を置く。</li>
-            </ul>
-            <h3>おすすめの章立て</h3>
-            <table>
-              <thead>
-                <tr><th>記事タイプ</th><th>おすすめ構成</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>比較記事</td><td>結論 → 比較ポイント → 向いている人 → 注意点 → FAQ</td></tr>
-                <tr><td>レビュー記事</td><td>結論 → 作品の特徴 → 類似作品との違い → 向いている人 → 注意点</td></tr>
-                <tr><td>まとめ記事</td><td>結論 → ジャンル説明 → おすすめ候補 → 選び方 → 関連記事</td></tr>
-              </tbody>
-            </table>
-            <blockquote>この雛形は、いきなり完成版を目指すためではなく、「見た目を整えたうえで記事を増やしやすい棚」を作るためのものです。</blockquote>
-          </article>
-        </section>
-
-      <section class="section" id="review">
-  <article class="article">
-    <h2>【DLsite初心者向け】最初の1本におすすめしやすい音声作品</h2>
-    <p class="small">※ 当記事にはPRを含みます。リンク先にはアフィリエイトリンクを含む場合があります。</p>
-
-    <h3>この記事で分かること</h3>
-    <ul>
-      <li>DLsiteで最初の1本を選ぶときの見方。</li>
-      <li>有名タイトルから入るメリット。</li>
-      <li>初心者が迷いにくい作品ページの見方。</li>
-    </ul>
-
-    <h3>今回紹介する作品</h3>
-    <p>
-      今回の入口として紹介するのは、<strong>【デート・ア・ライブ】時崎狂三ASMR ～永遠に、あなたを甘く独り占め～</strong> です。
-      有名タイトルの公式ASMR作品なので、DLsiteを初めて触る人でも入りやすいタイプの作品です。
-    </p>
-
-    <div class="note-box">
-      <strong>作品ページ:</strong><br>
-      <a href="https://dlaf.jp/home-touch/dlaf/=/t/p/link/work/aid/yofukashireview/id/RJ01553954.html" target="_blank" rel="nofollow sponsored noopener">
-        DLsiteで作品ページを見る
-      </a>
-
-    </div>
-
-    <h3>結論</h3>
-    <p>
-      「DLsiteで何から見ればいいか分からない」という人は、最初の1本を
-      <strong>知名度のある作品</strong> から選ぶと失敗しにくいです。
-      作品ページの説明や雰囲気がつかみやすく、ジャンルの入口としても使いやすいからです。
-    </p>
-
-    <h3>この作品が初心者向きな理由</h3>
-    <ul>
-      <li>タイトルの知名度があり、内容イメージを持ちやすい。</li>
-      <li>作品ページを見た時に、雰囲気や方向性をつかみやすい。</li>
-      <li>DLsiteの音声作品ジャンルに慣れていない人でも入り口にしやすい。</li>
-    </ul>
-
-    <h3>DLsiteで作品を選ぶときのポイント</h3>
-    <ul>
-      <li>タイトルや紹介文で、どんな作品か分かるか。</li>
-      <li>キャラ、声、シチュエーションが自分の好みに近いか。</li>
-      <li>サンプルや商品説明を見て、買った後のイメージが持てるか。</li>
-    </ul>
-
-    <blockquote>
-      最初のうちは「人気だから」だけで選ぶよりも、
-      「説明を読んで自分に合いそうか」で選ぶほうが満足しやすいです。
-    </blockquote>
-
-    <h3>向いている人</h3>
-    <ul>
-      <li>DLsiteを使い始めたばかりの人。</li>
-      <li>まずは有名タイトルから入りたい人。</li>
-      <li>音声作品の雰囲気をつかみたい人。</li>
-    </ul>
-
-    <h3>注意点</h3>
-    <ul class="check-list">
-      <li><span class="ok">OK</span> まずは通常URLで公開して見た目確認でもよい。</li>
-      <li><span class="ok">OK</span> 後でこのURLを自分のDLsiteアフィリエイトリンクに差し替える。</li>
-      <li><span class="ok">OK</span> 作品名や紹介文を増やしすぎず、最初は短く運用する。</li>
-    </ul>
-
-    <h3>作品ページを見る</h3>
-    <p>
-      まずは作品ページを見て、紹介文や雰囲気が自分に合うか確認するのがおすすめです。
-    </p>
-    <p>
-      <a class="btn" href="https://dlaf.jp/home-touch/dlaf/=/t/p/link/work/aid/yofukashireview/id/RJ01553954.html" target="_blank" rel="nofollow sponsored noopener">
-        DLsiteで作品ページを見る
-      </a>
-    </p>
-
-    <h3>よくある質問</h3>
-    <p><strong>Q.</strong> このURLのままでもいい？<br>
-    <strong>A.</strong> 見た目確認用ならOKです。本運用では、あとでDLsiteのアフィリエイトリンクに差し替えてください。</p>
-
-    <p><strong>Q.</strong> いきなり複数作品を並べるべき？<br>
-    <strong>A.</strong> 最初は1作品だけのほうが更新しやすく、スマホでも管理しやすいです。</p>
-  </article>
-</section>
-
-      </div>
-
-      <aside class="sidebar">
-        <section class="box" id="popular">
-          <h2 class="sidebar-title">人気記事ランキング</h2>
-          <ol class="ranking">
-            <li><span class="rank-badge">1</span><a href="#review">初心者向けの比較記事で最初に見るべきポイント</a></li>
-            <li><span class="rank-badge">2</span><a href="#guide">日本語ブログっぽく見えるトップ構成の作り方</a></li>
-            <li><span class="rank-badge">3</span><a href="#review">レビュー記事で先に結論を書く理由</a></li>
-            <li><span class="rank-badge">4</span><a href="#policy">PR表記と固定ページの整え方</a></li>
-            <li><span class="rank-badge">5</span><a href="#">関連記事導線の置き方</a></li>
-          </ol>
-        </section>
-
-        <section class="box">
-          <h2 class="sidebar-title">カテゴリ</h2>
-          <ul class="cat-list">
-            <li><a href="#">初心者向けガイド</a></li>
-            <li><a href="#">FANZA比較・ランキング</a></li>
-            <li><a href="#">DLsiteレビュー・音声作品</a></li>
-            <li><a href="#">MGS特集</a></li>
-            <li><a href="#">よくある質問</a></li>
-          </ul>
-        </section>
-
-        <section class="box">
-          <h2 class="sidebar-title">運営者プロフィール</h2>
-          <div class="profile">
-            <div class="avatar">編</div>
-            <div>
-              <strong>夜ふかしレビュー便 編集部</strong>
-              <p class="muted">成人向け作品の比較やレビューを、初心者でも見やすい形で整理する想定のプロフィール枠です。実運用では、ここを自分の運営者情報に差し替えます。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="cta">
-          <h2 class="sidebar-title">おすすめ導線ボックス</h2>
-          <p class="muted">ここは「人気作品を見る」「初心者向けまとめへ進む」「FANZA比較へ進む」「DLsite音声まとめを見る」など、最も押してほしいボタンを置く場所です。</p>
-          <a class="btn" href="#review">おすすめ記事を見る</a>
-          <div class="notice">※ 実運用ではこのボタンのリンク先をアフィリエイト導線か特集ページへ差し替えます。</div>
-        </section>
-      </aside>
-    </div>
-  </main>
-
-  <footer id="policy">
-    <div class="wrap footer-grid">
-      <section>
-        <h2 class="sidebar-title">このサイトについて</h2>
-        <p class="muted">このページは、FANZA・DLsite・MGSなど複数サービスをまたぐ成人向けアフィリエイトサイトを、日本語ブログ風の見た目で運用するための雛形です。公開前には、年齢制限の案内、PR表記、運営者情報、プライバシーポリシー、問い合わせ先を整える想定です。</p>
-      </section>
-      <section>
-        <h2 class="sidebar-title">固定ページ候補</h2>
-        <ul class="footer-links">
-          <li><a href="#">運営者情報</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-          <li><a href="#">免責事項</a></li>
+    <aside class="sidebar">
+      <section class="sidebar-block">
+        <h2>カテゴリ</h2>
+        <ul class="sidebar-list">
+          {% assign categories = site.categories | sort %}
+          {% for category in categories %}
+          <li>
+            <a href="/categories/{{ category[0] | slugify }}/">
+              {{ category[0] }} <span>{{ category[1].size }}</span>
+            </a>
+          </li>
+          {% endfor %}
         </ul>
       </section>
-      <section>
-        <h2 class="sidebar-title">更新メモ</h2>
-        <p class="muted">このまま1ファイルで動きます。差し替えの中心は、サイト名、見出し、リンク先、固定ページ導線です。記事を増やす時は同じデザインのまま複製して広げられます。</p>
+
+      <section class="sidebar-block">
+        <h2>新着3件</h2>
+        <ul class="sidebar-post-list">
+          {% for post in site.posts limit: 3 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">
+              <strong>{{ post.title }}</strong>
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%Y.%m.%d" }}
+              </time>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
       </section>
-    </div>
-  </footer>
-</body>
-</html>
+
+      <section class="sidebar-block">
+        <h2>サイトについて</h2>
+        <p>DLsiteの音声作品や同人作品を、検索しやすい形で整理しているレビューサイトです。</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: "DLsite Review Blog" }}</p>
+  </div>
+</footer>
