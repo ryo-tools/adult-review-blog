@@ -1,36 +1,73 @@
 ---
 layout: default
 ---
+
 <main class="work-page">
   <div class="wrap">
-    <article class="work-article">
-      <div class="work-meta">
-        {% if page.service %}
-        <span class="work-chip">{{ page.service | upcase }}</span>
-        {% endif %}
-        {% if page.category %}
-        <span class="work-chip">{{ page.category }}</span>
-        {% endif %}
-        {% if page.date %}
-        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-        {% endif %}
-      </div>
+    <article class="card work-article">
+      <header class="work-header">
+        <div class="work-meta">
+          {% if page.service %}
+          <span class="chip">{{ page.service | upcase }}</span>
+          {% endif %}
+          {% if page.category %}
+          <span class="chip">{{ page.category }}</span>
+          {% endif %}
+          {% if page.date %}
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%Y.%m.%d" }}
+          </time>
+          {% endif %}
+        </div>
 
-      <h1 class="work-title">{{ page.title }}</h1>
+        <h1 class="work-title">{{ page.title }}</h1>
 
-      {% if page.description %}
-      <p class="work-description">{{ page.description }}</p>
-      {% endif %}
+        {% if page.description %}
+        <p class="work-description">{{ page.description }}</p>
+        {% endif %}
+      </header>
 
       {% if page.image %}
       <figure class="work-thumb">
+        {% if page.image contains '://' %}
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+        {% else %}
         <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+        {% endif %}
       </figure>
       {% endif %}
 
       <div class="work-body">
         {{ content }}
       </div>
+
+      {% if page.link_url or page.links %}
+      <section class="work-links card-section">
+        <h2>関連リンク</h2>
+
+        <div class="button-list">
+          {% if page.link_url %}
+          <a class="btn" href="{{ page.link_url }}" target="_blank" rel="nofollow noopener noreferrer">
+            {{ page.link_label | default: "作品ページを見る" }}
+          </a>
+          {% endif %}
+
+          {% if page.links %}
+            {% for item in page.links %}
+            <a class="btn btn-secondary" href="{{ item.url }}" {% if item.external %}target="_blank" rel="nofollow noopener noreferrer"{% endif %}>
+              {{ item.label }}
+            </a>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if page.notice %}
+      <section class="note-box">
+        <p>{{ page.notice }}</p>
+      </section>
+      {% endif %}
     </article>
   </div>
 </main>
