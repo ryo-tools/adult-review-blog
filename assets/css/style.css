@@ -153,6 +153,8 @@ nav a {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 30px;
+  max-width: calc(100% - 320px - 26px);
+  margin-right: auto;
 }
 
 .hero-label {
@@ -928,6 +930,10 @@ code {
 
   .hero-points {
     grid-template-columns: 1fr;
+  }
+
+  .hero-inner {
+    max-width: none;
   }
 }
 
