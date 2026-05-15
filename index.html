@@ -4,152 +4,63 @@ title: "夜ふかしレビュー便"
 description: "DLsiteの音声作品・ASMR作品を中心に紹介するレビューサイト"
 ---
 
-<main class="container">
+<main>
   <section class="hero">
     <div class="wrap">
-      <div class="hero-inner">
-        <p class="hero-label">夜ふかしレビュー便</p>
-        <h1>成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</h1>
-        <p class="hero-text">
-          FANZA・DLsite・MGSなど複数サービスの成人向け作品について、
-          比較・レビュー・初心者向けガイドを整理するブログ型メディアです。
-        </p>
+      <div class="hero-grid">
+        <div class="panel hero-main">
+          <p class="eyebrow">成人向けレビュー向けトップページ雛形</p>
+          <h1>作品選びで迷う人向けに、<br>比較・レビュー・初心者導線を1か所にまとめる。</h1>
+          <p class="lead">
+            このトップページは、成人向けアフィリエイトサイトを日本語ブログ風に見せるための実運用向け雛形です。
+            FANZA・DLsite・MGSなど複数サービスをまたいだ扱えるよう、看板化しやすい形にしています。
+            レビュー記事、比較記事、ランキング、カテゴリ導線、PR表記、運営情報の入口をまとめています。
+          </p>
+
+          <div class="hero-points">
+            <div>初心者向けの選び方を先に置ける</div>
+            <div>ランキングや新着で回遊導線を作れる</div>
+            <div>あとから各記事へリンクを差し替えやすい</div>
+          </div>
+        </div>
+
+        <aside class="panel hero-side">
+          <h2>最初に差し替える場所</h2>
+          <div class="mini-list">
+            <div class="mini-card">
+              <div class="cat">1. リンク先</div>
+              <a href="#">各ボタンや記事リンクを実際のURLへ変える</a>
+            </div>
+            <div class="mini-card">
+              <div class="cat">2. 記事テーマ</div>
+              <a href="#">レビュー対象のジャンルやシリーズ名に差し替える</a>
+            </div>
+            <div class="mini-card">
+              <div class="cat">3. 固定ページ</div>
+              <a href="#">運営者情報・プライバシーポリシー・問い合わせ導線を作る</a>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
-  <div class="content-grid">
-    <section class="main-content">
-      <section class="section-block">
+
+  <div class="wrap layout">
+    <section>
+      <section class="section">
         <div class="section-head">
-          <h2>おすすめ記事</h2>
+          <h2 class="section-title">新着記事</h2>
+          <a href="{{ '/reviews/' | relative_url }}">一覧を見る</a>
         </div>
 
-        <div class="card-list">
-          {% assign featured_works = site.works | where: "featured", true %}
-          {% for work in featured_works limit: 4 %}
-          <article class="post-card">
-            <a href="{{ work.url | relative_url }}" class="post-card-link">
-              {% if work.image %}
-              <div class="post-card-thumb">
-                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
-              </div>
-              {% endif %}
-
-              <div class="post-card-body">
-                <div class="post-meta-row">
-                  {% if work.service %}
-                  <span class="post-category">{{ work.service | upcase }}</span>
-                  {% endif %}
-                  {% if work.date %}
-                  <time datetime="{{ work.date | date_to_xmlschema }}">
-                    {{ work.date | date: "%Y.%m.%d" }}
-                  </time>
-                  {% endif %}
-                </div>
-
-                <h3>{{ work.title }}</h3>
-
-                {% if work.description %}
-                <p>{{ work.description }}</p>
-                {% endif %}
-
-                {% if work.tags and work.tags.size > 0 %}
-                <div class="tag-list">
-                  {% for tag in work.tags limit: 3 %}
-                  <span class="tag">#{{ tag }}</span>
-                  {% endfor %}
-                </div>
-                {% endif %}
-              </div>
-            </a>
-          </article>
-          {% endfor %}
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-head">
-          <h2>最新記事</h2>
-        </div>
-
-        <div class="card-list">
+        <div class="cards">
           {% assign sorted_works = site.works | sort: "date" | reverse %}
-          {% for work in sorted_works limit: 12 %}
+          {% for work in sorted_works limit: 6 %}
           <article class="post-card">
             <a href="{{ work.url | relative_url }}" class="post-card-link">
               {% if work.image %}
-              <div class="post-card-thumb">
-                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
-              </div>
-              {% endif %}
-
-              <div class="post-card-body">
-                <div class="post-meta-row">
-                  {% if work.category %}
-                  <span class="post-category">{{ work.category }}</span>
-                  {% endif %}
-                  {% if work.date %}
-                  <time datetime="{{ work.date | date_to_xmlschema }}">
-                    {{ work.date | date: "%Y.%m.%d" }}
-                  </time>
-                  {% endif %}
-                </div>
-
-                <h3>{{ work.title }}</h3>
-
-                {% if work.description %}
-                <p>{{ work.description }}</p>
-                {% endif %}
-              </div>
-            </a>
-          </article>
-          {% endfor %}
-        </div>
-      </section>
-    </section>
-
-    <aside class="sidebar">
-      <section class="sidebar-block">
-        <h2>カテゴリ</h2>
-        <ul class="sidebar-list">
-          {% assign categories = site.works | map: "category" | uniq | sort %}
-          {% for category in categories %}
-          {% if category %}
-          <li>
-            <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/">
-              {{ category }}
-            </a>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </section>
-
-      <section class="sidebar-block">
-        <h2>新着3件</h2>
-        <ul class="sidebar-post-list">
-          {% for work in sorted_works limit: 3 %}
-          <li>
-            <a href="{{ work.url | relative_url }}">
-              <strong>{{ work.title }}</strong>
-              {% if work.date %}
-              <time datetime="{{ work.date | date_to_xmlschema }}">
-                {{ work.date | date: "%Y.%m.%d" }}
-              </time>
-              {% endif %}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-
-      <section class="sidebar-block">
-        <h2>サイトについて</h2>
-        <p>
-          DLsiteのASMR・音声作品を中心に、
-          作品選びの参考になるレビューをまとめています。
-        </p>
-      </section>
-    </aside>
-  </div>
-</main>
+              <div class="thumb">
+                {% if work.image contains '://' %}
+                <img src="{{ work.image }}" alt="{{ work.title }}">
+                {% else %}
+                
