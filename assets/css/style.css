@@ -639,3 +639,165 @@ footer {
     gap: 8px;
   }
 }
+
+.work-header {
+  margin-bottom: 20px;
+}
+
+.work-thumb {
+  margin: 0 0 24px;
+}
+
+.work-thumb img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #efe3f0, #f7f1f7 52%, #dddfe7);
+}
+
+.work-body > * + * {
+  margin-top: 1em;
+}
+
+.work-body h2 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.work-body h3 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.work-body p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.work-body ul,
+.work-body ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.work-body li + li {
+  margin-top: 6px;
+}
+
+.work-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.work-body blockquote {
+  margin: 20px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #cfa8d3;
+  border-radius: 12px;
+  background: #fbf5fc;
+  color: var(--text);
+}
+
+.card-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.card-section h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.button-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.btn:hover {
+  color: #fff;
+  text-decoration: none;
+  filter: brightness(0.97);
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.btn-secondary:hover {
+  color: var(--text);
+}
+
+.note-box {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid #e6dbe8;
+  border-radius: 14px;
+  background: #f7f1f8;
+}
+
+.note-box p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .work-header {
+    margin-bottom: 16px;
+  }
+
+  .work-thumb {
+    margin-bottom: 18px;
+  }
+
+  .work-body h2,
+  .card-section h2 {
+    font-size: 18px;
+  }
+
+  .work-body h3 {
+    font-size: 17px;
+  }
+
+  .work-body p,
+  .note-box p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .button-list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .btn,
+  .btn-secondary {
+    width: 100%;
+  }
+}
