@@ -4,68 +4,47 @@ title: "夜ふかしレビュー便"
 description: "成人向け作品の比較、レビュー、選び方を整理するブログ型メディア"
 ---
 
-<main class="container">
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div class="panel hero-main">
-          <p class="eyebrow">夜ふかしレビュー便</p>
-          <h1>成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</h1>
-          <p class="lead">
-            FANZA・DLsite・MGSなど複数サービスの成人向け作品について、
-            比較・レビュー・初心者向けガイドを整理するブログ型メディアです。
-          </p>
-        </div>
-  
-        <aside class="panel hero-side">
-          <h2>最初に差し替える場所</h2>
-          <div class="mini-list">
-            <div class="mini-card">
-              <div class="cat">1. リンク先</div>
-              <a href="#">各ボタンや記事リンクを実際のURLへ変える</a>
-            </div>
-            <div class="mini-card">
-              <div class="cat">2. 記事テーマ</div>
-              <a href="#">レビュー対象のジャンルやシリーズ名に差し替える</a>
-            </div>
-            <div class="mini-card">
-              <div class="cat">3. 固定ページ</div>
-              <a href="#">運営者情報・プライバシーポリシー・問い合わせ導線を作る</a>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+{% assign featured_works = site.works | where: "featured", true %}
+{% assign sorted_works = site.works | sort: "date" | reverse %}
+{% assign categories = site.works | map: "category" | uniq | sort %}
 
-  <div class="content-grid">
-    <section class="main-content">
-      <section class="section-block">
+<main class="home wrap">
+  <div class="home-grid">
+    <section class="home-main">
+      <section class="hero-card">
+        <p class="eyebrow">夜ふかしレビュー便</p>
+        <h1>成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</h1>
+        <p class="lead">
+          FANZA・DLsite・MGSなど複数サービスの成人向け作品について、
+          比較・レビュー・初心者向けガイドを整理するブログ型メディアです。
+        </p>
+      </section>
+
+      <section class="home-section">
         <div class="section-head">
           <h2>おすすめ記事</h2>
         </div>
 
-        <div class="card-list">
-          {% assign featured_works = site.works | where: "featured", true %}
-          {% for work in featured_works limit: 4 %}
-          <article class="post-card">
+        <div class="post-list">
+          {% for work in featured_works limit: 1 %}
+          <article class="post-card post-card-featured">
             <a href="{{ work.url | relative_url }}" class="post-card-link">
               {% if work.image %}
-              {% if work.image contains '://' %}
               <div class="post-card-thumb">
+                {% if work.image contains '://' %}
                 <img src="{{ work.image }}" alt="{{ work.title }}">
+                {% else %}
+                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
+                {% endif %}
               </div>
               {% else %}
-              <div class="post-card-thumb">
-                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
-              </div>
-              {% endif %}
+              <div class="post-card-thumb"></div>
               {% endif %}
 
               <div class="post-card-body">
                 <div class="post-meta-row">
                   {% if work.service %}
-                  <span class="post-category">{{ work.service | upcase }}</span>
+                  <span class="post-chip">{{ work.service | upcase }}</span>
                   {% endif %}
                   {% if work.date %}
                   <time datetime="{{ work.date | date_to_xmlschema }}">
@@ -81,9 +60,9 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
                 {% endif %}
 
                 {% if work.tags and work.tags.size > 0 %}
-                <div class="tag-list">
+                <div class="post-tags">
                   {% for tag in work.tags limit: 3 %}
-                  <span class="tag">#{{ tag }}</span>
+                  <span class="post-chip">#{{ tag }}</span>
                   {% endfor %}
                 </div>
                 {% endif %}
@@ -94,32 +73,31 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
         </div>
       </section>
 
-      <section class="section-block">
+      <section class="home-section">
         <div class="section-head">
           <h2>最新記事</h2>
         </div>
 
-        <div class="card-list">
-          {% assign sorted_works = site.works | sort: "date" | reverse %}
-          {% for work in sorted_works limit: 12 %}
+        <div class="post-list">
+          {% for work in sorted_works limit: 3 %}
           <article class="post-card">
             <a href="{{ work.url | relative_url }}" class="post-card-link">
               {% if work.image %}
-              {% if work.image contains '://' %}
               <div class="post-card-thumb">
+                {% if work.image contains '://' %}
                 <img src="{{ work.image }}" alt="{{ work.title }}">
+                {% else %}
+                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
+                {% endif %}
               </div>
               {% else %}
-              <div class="post-card-thumb">
-                <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
-              </div>
-              {% endif %}
+              <div class="post-card-thumb"></div>
               {% endif %}
 
               <div class="post-card-body">
                 <div class="post-meta-row">
                   {% if work.category %}
-                  <span class="post-category">{{ work.category }}</span>
+                  <span class="post-chip">{{ work.category }}</span>
                   {% endif %}
                   {% if work.date %}
                   <time datetime="{{ work.date | date_to_xmlschema }}">
@@ -141,26 +119,41 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
       </section>
     </section>
 
-    <aside class="sidebar">
-      <section class="sidebar-block">
+    <aside class="home-side">
+      <section class="side-card side-card-guide">
+        <h2>最初に差し替える場所</h2>
+        <div class="guide-list">
+          <div class="guide-item">
+            <span class="guide-label">1. リンク先</span>
+            <p>各ボタンや記事リンクを実際のURLへ変える</p>
+          </div>
+          <div class="guide-item">
+            <span class="guide-label">2. 記事テーマ</span>
+            <p>レビュー対象のジャンルやシリーズ名に差し替える</p>
+          </div>
+          <div class="guide-item">
+            <span class="guide-label">3. 固定ページ</span>
+            <p>運営者情報・プライバシーポリシー・問い合わせ導線を作る</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="side-card">
         <h2>カテゴリ</h2>
-        <ul class="sidebar-list">
-          {% assign categories = site.works | map: "category" | uniq | sort %}
+        <ul class="side-list">
           {% for category in categories %}
           {% if category %}
           <li>
-            <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/">
-              {{ category }}
-            </a>
+            <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}/">{{ category }}</a>
           </li>
           {% endif %}
           {% endfor %}
         </ul>
       </section>
 
-      <section class="sidebar-block">
+      <section class="side-card">
         <h2>新着3件</h2>
-        <ul class="sidebar-post-list">
+        <ul class="side-post-list">
           {% for work in sorted_works limit: 3 %}
           <li>
             <a href="{{ work.url | relative_url }}">
@@ -176,7 +169,7 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
         </ul>
       </section>
 
-      <section class="sidebar-block">
+      <section class="side-card">
         <h2>サイトについて</h2>
         <p>
           DLsiteのASMR・音声作品を中心に、
