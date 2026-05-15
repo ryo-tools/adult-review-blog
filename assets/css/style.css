@@ -12,8 +12,9 @@
   --radius: 18px;
   --shadow: 0 12px 28px rgba(38, 35, 31, 0.08);
   --content: 1120px;
-  --side: 280px;
-  --gap: 18px;
+  --side-width: 280px;
+  --grid-gap: 18px;
+  --card-pad: 16px;
 }
 
 * {
@@ -33,6 +34,10 @@ body {
   line-height: 1.8;
 }
 
+main {
+  display: block;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -45,10 +50,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-main {
-  display: block;
 }
 
 h1,
@@ -69,7 +70,8 @@ p {
 
 ul,
 ol {
-  margin: 0 0 1em;
+  margin: 0;
+  padding: 0;
 }
 
 .wrap,
@@ -92,11 +94,11 @@ ol {
 }
 
 .site-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 20;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
@@ -143,16 +145,10 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  padding: 0;
-  margin: 0;
   list-style: none;
-  font-size: 14px;
-}
-
-.site-header nav li,
-nav li {
   margin: 0;
   padding: 0;
+  font-size: 14px;
 }
 
 .site-header nav a,
@@ -160,25 +156,23 @@ nav a {
   color: var(--text);
 }
 
-.hero {
-  padding: 34px 0 24px;
+.home {
+  padding: 34px 0 42px;
 }
 
-.hero-grid,
-.layout {
+.page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--side);
-  gap: var(--gap);
+  grid-template-columns: minmax(0, 1fr) var(--side-width);
+  gap: var(--grid-gap);
   align-items: start;
 }
 
-.layout {
-  padding: 12px 0 42px;
+.page-grid > * {
+  min-width: 0;
 }
 
-.panel,
-.box,
-.post-card,
+.card,
+.entry-card,
 .work-article,
 .footer-grid {
   background: var(--surface);
@@ -187,17 +181,18 @@ nav a {
   box-shadow: var(--shadow);
 }
 
-.hero-main {
+.hero-card,
+.guide-card,
+.sidebar-card {
+  padding: var(--card-pad);
+}
+
+.hero-card {
   padding: 30px;
 }
 
-.hero-side,
-.box {
-  padding: 16px;
-}
-
 .eyebrow,
-.tag {
+.chip {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
@@ -213,7 +208,7 @@ nav a {
   letter-spacing: 0.04em;
 }
 
-.hero h1,
+.hero-card h1,
 .work-title {
   font-size: clamp(28px, 4vw, 42px);
   line-height: 1.25;
@@ -227,34 +222,16 @@ nav a {
   color: var(--muted);
 }
 
-.mini-list,
-.cards {
-  display: grid;
-  gap: 14px;
+.card-heading,
+.section-title,
+.work-body h2,
+.footer-grid h2 {
+  font-size: 20px;
+  line-height: 1.4;
 }
 
-.mini-card {
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fffcff;
-}
-
-.mini-card .cat {
-  margin-bottom: 6px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.mini-card a {
-  display: block;
-  color: var(--text);
-  font-weight: 700;
-  line-height: 1.6;
-}
-
-.section {
-  margin-bottom: 28px;
+.section-block {
+  margin: 0;
 }
 
 .section-head {
@@ -265,36 +242,89 @@ nav a {
   margin-bottom: 14px;
 }
 
-.section-title,
-.sidebar-title,
-.hero-side h2,
-.work-body h2 {
-  font-size: 20px;
-  line-height: 1.4;
+.guide-list,
+.entry-list,
+.sidebar-stack,
+.link-list,
+.post-list,
+.footer-links {
+  display: grid;
+  gap: 14px;
 }
 
-.post-card {
+.sidebar-stack {
+  align-content: start;
+}
+
+.guide-item {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fffcff;
+}
+
+.guide-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.guide-item p,
+.sidebar-card p,
+.footer-grid p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.link-list,
+.post-list,
+.footer-links {
+  list-style: none;
+}
+
+.link-list a,
+.post-list a {
+  display: block;
+  color: var(--text);
+}
+
+.post-list strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.post-list time {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.entry-card {
   overflow: hidden;
 }
 
-.post-card-link {
+.entry-link {
   display: block;
   color: inherit;
 }
 
-.post-card-link:hover {
+.entry-link:hover {
   color: inherit;
   text-decoration: none;
 }
 
-.thumb {
+.entry-thumb {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 6.2;
   background: linear-gradient(135deg, #efe3f0, #f7f1f7 52%, #dddfe7);
 }
 
-.thumb::after {
+.entry-thumb::after {
   content: "レビュー記事";
   position: absolute;
   right: 14px;
@@ -307,75 +337,48 @@ nav a {
   font-size: 12px;
 }
 
-.thumb img {
+.entry-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.post-body {
+.entry-body {
   padding: 14px 14px 16px;
 }
 
-.tags {
+.entry-meta,
+.entry-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.entry-meta {
   margin-bottom: 10px;
   font-size: 12px;
   color: var(--muted);
 }
 
-.tag {
+.entry-tags {
+  margin-top: 10px;
+}
+
+.chip {
   padding: 5px 10px;
   background: #f2ebf5;
   color: #715778;
 }
 
-.post-title {
+.entry-title {
   margin: 0 0 8px;
   font-size: 18px;
   line-height: 1.5;
 }
 
-.post-excerpt {
+.entry-excerpt {
   margin: 0;
   font-size: 13px;
-  color: var(--muted);
-}
-
-.sidebar-post-list,
-.cat-list,
-.footer-links {
-  display: grid;
-  gap: 8px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar-post-list a,
-.cat-list a {
-  display: block;
-  color: var(--text);
-}
-
-.sidebar-post-list strong {
-  display: block;
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.sidebar-post-list time {
-  display: block;
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.box p {
-  margin: 0;
-  font-size: 14px;
   color: var(--muted);
 }
 
@@ -428,6 +431,7 @@ nav a {
 .work-body ul,
 .work-body ol {
   padding-left: 20px;
+  margin-top: 0.5em;
 }
 
 .work-body blockquote {
@@ -475,14 +479,6 @@ footer {
 
 .footer-grid h2 {
   margin-bottom: 14px;
-  font-size: 20px;
-  line-height: 1.4;
-}
-
-.footer-grid p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--muted);
 }
 
 .footer-links a {
@@ -499,8 +495,7 @@ footer {
 }
 
 @media (max-width: 980px) {
-  .hero-grid,
-  .layout,
+  .page-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -572,37 +567,27 @@ footer {
     line-height: 1.6;
   }
 
-  .hero {
-    padding: 18px 0 14px;
+  .home {
+    padding: 18px 0 28px;
   }
 
-  .hero-main,
-  .hero-side,
-  .box,
+  .hero-card,
+  .guide-card,
+  .sidebar-card,
   .work-article,
   .footer-grid {
     padding: 16px;
     border-radius: 16px;
   }
 
-  .section {
-    margin-bottom: 18px;
-  }
-
-  .section-head {
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
+  .card-heading,
   .section-title,
-  .sidebar-title,
-  .hero-side h2,
   .work-body h2,
   .footer-grid h2 {
     font-size: 18px;
   }
 
-  .hero h1,
+  .hero-card h1,
   .work-title {
     font-size: 26px;
     line-height: 1.35;
@@ -614,18 +599,19 @@ footer {
     line-height: 1.8;
   }
 
-  .post-title {
+  .entry-title {
     font-size: 17px;
   }
 
-  .post-excerpt,
-  .box p,
+  .entry-excerpt,
+  .guide-item p,
+  .sidebar-card p,
   .footer-grid p {
     font-size: 13px;
     line-height: 1.8;
   }
 
-  .thumb {
+  .entry-thumb {
     aspect-ratio: 16 / 7.2;
   }
 
@@ -648,7 +634,8 @@ footer {
     font-size: 21px;
   }
 
-  .tags {
+  .entry-meta,
+  .entry-tags {
     gap: 8px;
   }
 }
