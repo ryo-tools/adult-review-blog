@@ -1,0 +1,65 @@
+---
+layout: default
+title: "記事一覧"
+description: "DLsiteのASMR・音声作品レビュー一覧"
+---
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Archive</p>
+      <h1>記事一覧</h1>
+      <p class="hero-text">
+        DLsiteのASMR・音声作品レビューを新着順でまとめています。
+      </p>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-head">
+      <h2>すべての記事</h2>
+    </div>
+
+    <div class="card-list">
+      {% assign sorted_works = site.works | sort: "date" | reverse %}
+      {% for work in sorted_works %}
+      <article class="post-card">
+        <a href="{{ work.url | relative_url }}" class="post-card-link">
+          {% if work.image %}
+          <div class="post-card-thumb">
+            <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
+          </div>
+          {% endif %}
+
+          <div class="post-card-body">
+            <div class="post-meta-row">
+              {% if work.category %}
+              <span class="post-category">{{ work.category }}</span>
+              {% endif %}
+              {% if work.date %}
+              <time datetime="{{ work.date | date_to_xmlschema }}">
+                {{ work.date | date: "%Y.%m.%d" }}
+              </time>
+              {% endif %}
+            </div>
+
+            <h3>{{ work.title }}</h3>
+
+            {% if work.description %}
+            <p>{{ work.description }}</p>
+            {% endif %}
+
+            {% if work.tags and work.tags.size > 0 %}
+            <div class="tag-list">
+              {% for tag in work.tags limit: 4 %}
+              <span class="tag">#{{ tag }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</main>
