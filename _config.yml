@@ -1,0 +1,17 @@
+title: "夜ふかしレビュー便"
+description: "DLsiteのASMR・音声作品を中心に紹介するレビューサイト"
+lang: "ja"
+
+collections:
+  works:
+    output: true
+    permalink: /works/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "works"
+    values:
+      layout: "work"
+
+markdown: kramdown
