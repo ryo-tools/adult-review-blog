@@ -4,33 +4,54 @@ title: "夜ふかしレビュー便"
 description: "成人向け作品の比較、レビュー、選び方を整理するブログ型メディア"
 ---
 
-{% assign featured_works = site.works | where: "featured", true %}
-{% assign sorted_works = site.works | sort: "date" | reverse %}
-{% assign categories = site.works | map: "category" | uniq | sort %}
-
-<main class="home wrap">
-  <div class="home-grid">
-    <section class="home-main">
-      <section class="hero-card">
-        <p class="eyebrow">夜ふかしレビュー便</p>
-        <h1>成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</h1>
-        <p class="lead">
-          FANZA・DLsite・MGSなど複数サービスの成人向け作品について、
-          比較・レビュー・初心者向けガイドを整理するブログ型メディアです。
-        </p>
-      </section>
-
-      <section class="home-section">
-        <div class="section-head">
-          <h2>おすすめ記事</h2>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="panel hero-main">
+          <p class="eyebrow">夜ふかしレビュー便</p>
+          <h1>成人向け作品の比較、レビュー、選び方を整理するブログ型メディア</h1>
+          <p class="lead">
+            FANZA・DLsite・MGSなど複数サービスの成人向け作品について、
+            比較・レビュー・初心者向けガイドを整理するブログ型メディアです。
+          </p>
         </div>
 
-        <div class="post-list">
+        <aside class="panel hero-side">
+          <h2>最初に差し替える場所</h2>
+          <div class="mini-list">
+            <div class="mini-card">
+              <div class="cat">1. リンク先</div>
+              <a href="#">各ボタンや記事リンクを実際のURLへ変える</a>
+            </div>
+            <div class="mini-card">
+              <div class="cat">2. 記事テーマ</div>
+              <a href="#">レビュー対象のジャンルやシリーズ名に差し替える</a>
+            </div>
+            <div class="mini-card">
+              <div class="cat">3. 固定ページ</div>
+              <a href="#">運営者情報・プライバシーポリシー・問い合わせ導線を作る</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <section>
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">おすすめ記事</h2>
+        </div>
+
+        <div class="cards">
+          {% assign featured_works = site.works | where: "featured", true %}
           {% for work in featured_works limit: 1 %}
-          <article class="post-card post-card-featured">
+          <article class="post-card">
             <a href="{{ work.url | relative_url }}" class="post-card-link">
               {% if work.image %}
-              <div class="post-card-thumb">
+              <div class="thumb">
                 {% if work.image contains '://' %}
                 <img src="{{ work.image }}" alt="{{ work.title }}">
                 {% else %}
@@ -38,31 +59,29 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
                 {% endif %}
               </div>
               {% else %}
-              <div class="post-card-thumb"></div>
+              <div class="thumb"></div>
               {% endif %}
 
-              <div class="post-card-body">
-                <div class="post-meta-row">
+              <div class="post-body">
+                <div class="tags">
                   {% if work.service %}
-                  <span class="post-chip">{{ work.service | upcase }}</span>
+                  <span class="tag">{{ work.service | upcase }}</span>
                   {% endif %}
                   {% if work.date %}
-                  <time datetime="{{ work.date | date_to_xmlschema }}">
-                    {{ work.date | date: "%Y.%m.%d" }}
-                  </time>
+                  <span>{{ work.date | date: "%Y.%m.%d" }}</span>
                   {% endif %}
                 </div>
 
-                <h3>{{ work.title }}</h3>
+                <h3 class="post-title">{{ work.title }}</h3>
 
                 {% if work.description %}
-                <p>{{ work.description }}</p>
+                <p class="post-excerpt">{{ work.description }}</p>
                 {% endif %}
 
                 {% if work.tags and work.tags.size > 0 %}
-                <div class="post-tags">
+                <div class="tags">
                   {% for tag in work.tags limit: 3 %}
-                  <span class="post-chip">#{{ tag }}</span>
+                  <span class="tag">#{{ tag }}</span>
                   {% endfor %}
                 </div>
                 {% endif %}
@@ -73,17 +92,18 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
         </div>
       </section>
 
-      <section class="home-section">
+      <section class="section">
         <div class="section-head">
-          <h2>最新記事</h2>
+          <h2 class="section-title">最新記事</h2>
         </div>
 
-        <div class="post-list">
+        <div class="cards">
+          {% assign sorted_works = site.works | sort: "date" | reverse %}
           {% for work in sorted_works limit: 3 %}
           <article class="post-card">
             <a href="{{ work.url | relative_url }}" class="post-card-link">
               {% if work.image %}
-              <div class="post-card-thumb">
+              <div class="thumb">
                 {% if work.image contains '://' %}
                 <img src="{{ work.image }}" alt="{{ work.title }}">
                 {% else %}
@@ -91,25 +111,23 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
                 {% endif %}
               </div>
               {% else %}
-              <div class="post-card-thumb"></div>
+              <div class="thumb"></div>
               {% endif %}
 
-              <div class="post-card-body">
-                <div class="post-meta-row">
+              <div class="post-body">
+                <div class="tags">
                   {% if work.category %}
-                  <span class="post-chip">{{ work.category }}</span>
+                  <span class="tag">{{ work.category }}</span>
                   {% endif %}
                   {% if work.date %}
-                  <time datetime="{{ work.date | date_to_xmlschema }}">
-                    {{ work.date | date: "%Y.%m.%d" }}
-                  </time>
+                  <span>{{ work.date | date: "%Y.%m.%d" }}</span>
                   {% endif %}
                 </div>
 
-                <h3>{{ work.title }}</h3>
+                <h3 class="post-title">{{ work.title }}</h3>
 
                 {% if work.description %}
-                <p>{{ work.description }}</p>
+                <p class="post-excerpt">{{ work.description }}</p>
                 {% endif %}
               </div>
             </a>
@@ -119,28 +137,11 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
       </section>
     </section>
 
-    <aside class="home-side">
-      <section class="side-card side-card-guide">
-        <h2>最初に差し替える場所</h2>
-        <div class="guide-list">
-          <div class="guide-item">
-            <span class="guide-label">1. リンク先</span>
-            <p>各ボタンや記事リンクを実際のURLへ変える</p>
-          </div>
-          <div class="guide-item">
-            <span class="guide-label">2. 記事テーマ</span>
-            <p>レビュー対象のジャンルやシリーズ名に差し替える</p>
-          </div>
-          <div class="guide-item">
-            <span class="guide-label">3. 固定ページ</span>
-            <p>運営者情報・プライバシーポリシー・問い合わせ導線を作る</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="side-card">
-        <h2>カテゴリ</h2>
-        <ul class="side-list">
+    <aside class="sidebar">
+      <section class="box">
+        <h2 class="sidebar-title">カテゴリ</h2>
+        <ul class="cat-list">
+          {% assign categories = site.works | map: "category" | uniq | sort %}
           {% for category in categories %}
           {% if category %}
           <li>
@@ -151,9 +152,9 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
         </ul>
       </section>
 
-      <section class="side-card">
-        <h2>新着3件</h2>
-        <ul class="side-post-list">
+      <section class="box">
+        <h2 class="sidebar-title">新着3件</h2>
+        <ul class="sidebar-post-list">
           {% for work in sorted_works limit: 3 %}
           <li>
             <a href="{{ work.url | relative_url }}">
@@ -169,8 +170,8 @@ description: "成人向け作品の比較、レビュー、選び方を整理す
         </ul>
       </section>
 
-      <section class="side-card">
-        <h2>サイトについて</h2>
+      <section class="box">
+        <h2 class="sidebar-title">サイトについて</h2>
         <p>
           DLsiteのASMR・音声作品を中心に、
           作品選びの参考になるレビューをまとめています。
