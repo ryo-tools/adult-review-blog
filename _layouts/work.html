@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<main class="work-page">
+  <div class="wrap">
+    <article class="work-article">
+      <div class="work-meta">
+        {% if page.service %}
+        <span class="work-chip">{{ page.service | upcase }}</span>
+        {% endif %}
+        {% if page.category %}
+        <span class="work-chip">{{ page.category }}</span>
+        {% endif %}
+        {% if page.date %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+        {% endif %}
+      </div>
+
+      <h1 class="work-title">{{ page.title }}</h1>
+
+      {% if page.description %}
+      <p class="work-description">{{ page.description }}</p>
+      {% endif %}
+
+      {% if page.image %}
+      <figure class="work-thumb">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      </figure>
+      {% endif %}
+
+      <div class="work-body">
+        {{ content }}
+      </div>
+    </article>
+  </div>
+</main>
